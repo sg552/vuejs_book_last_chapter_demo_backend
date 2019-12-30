@@ -1,0 +1,28 @@
+<%= form_for @category, :html => { :class => "form-horizontal category" } do |f| %>
+  <div class="control-group">
+    <%= f.label "商品一级分类", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :first_category_id, options_from_collection_for_select(FirstCategory.all, :id, :name, @category.first_category_id), {:include_blank => "请选择分类"}, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "商品分类名称", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "商品分类图标", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :category_img, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <br/>
+
+  <%= f.submit "确定", :class => 'btn btn-primary' %>
+  <%= link_to "返回", categories_path, :class => 'btn btn-default'  %>
+
+<% end %>

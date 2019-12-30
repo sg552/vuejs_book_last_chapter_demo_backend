@@ -1,0 +1,15 @@
+<%= content_for :locbar do %>
+  商品
+  &raquo;
+  商品一级分类详情
+<% end %>
+
+<dl class="dl-horizontal">
+  <dt><strong>商品名称:</strong></dt>
+  <dd><%= @first_category.name %></dd>
+  <dt><strong>图片:</strong></dt>
+  <dd><%= image_tag @first_category.logo %></dd>
+</dl>
+
+<%= link_to "编辑", edit_first_category_path(@first_category), :class => 'btn btn-primary' %>
+<%= link_to "返回", first_categories_path, :class => 'btn btn-default'  %>

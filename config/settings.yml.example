@@ -1,0 +1,37 @@
+carrierwave:
+  bucket: 'siweitech'
+  operator: 'lala'
+  password: 'kaka'
+  bucket_host: 'http://siweitech.b0.upaiyun.com'
+
+image_domain_name: 'http://siweitech.b0.upaiyun.com'
+
+h5_server: 'http://ptbh5.siwei.me/?#'
+web_server: 'http://ptbweb.siwei.me'
+
+sms_key: 'dec71e0688f5'
+sms_url: "https://sms.yunpian.com/v1/sms/send.json"
+
+wechat_download_image_url: 'http://file.api.weixin.qq.com/cgi-bin/media/get'
+
+customer:
+  default_avatar: 'http://pintuanbao.b0.upaiyun.com/image/galleries/btn_vacancy@2x.png'
+
+#微信支付配置
+wechat:
+  app_id: 'wxf328143a' #公司的
+  app_secret: '1e039f' #公司的
+  mch_sid: '14294'  # 注意：这个是服务商号码.
+  mch_bid: '14236'  # 注意：这个是商户号码.
+
+  pay_url: 'https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers'
+  key: 'daydayupDAYDAYUPd'
+  desc: '思瑞明创思路乐购支付测试'
+  spbill_create_ip: '112.126.xx.yy'
+  user_pay_url: 'https://api.mch.weixin.qq.com/pay/unifiedorder'
+  notify_url: 'http://ptbweb.siwei.me/interface/payments/notify'
+  body: '思瑞明创思路乐购用户支付测试'
+
+#删除判断
+can_delete: false
+

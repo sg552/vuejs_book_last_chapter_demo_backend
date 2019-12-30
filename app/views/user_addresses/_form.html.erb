@@ -1,0 +1,69 @@
+<%= form_for @user_address, :html => { :class => "form-horizontal user_address" } do |f| %>
+
+  <div class="control-group">
+    <%= f.label :member_user_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :member_user_id, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :post_code, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :post_code, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :region, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :region, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :detail_address, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :detail_address, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :phone_number, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :phone_number, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :fixed_telephone, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :fixed_telephone, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :delivery_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :delivery_time, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <%= f.submit "确定", :class => 'btn btn-primary' %>
+  <%= link_to "返回", user_addresses_path, :class => 'btn btn-default' %>
+
+<% end %>

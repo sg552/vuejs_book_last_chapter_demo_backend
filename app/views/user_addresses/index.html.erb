@@ -1,0 +1,43 @@
+<div class="page-header">
+  <h1>用户收货地址列表</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>用户名称</th>
+      <th>收货人姓名</th>
+      <th>邮政编码</th>
+      <th>详细地址</th>
+      <th>手机号码</th>
+      <th>固定电话</th>
+      <th>邮箱</th>
+      <th>送货时间</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user_addresses.each do |user_address| %>
+      <tr>
+        <td><%= user_address.member_user.email %></td>
+        <td><%= user_address.name %></td>
+        <td><%= user_address.post_code %></td>
+        <td>
+          <%= user_address.province.name %>-
+          <%= user_address.city.name %>-
+          <%= user_address.town.name %>-
+          <%= user_address.try :detail_address %>
+        </td>
+        <td><%= user_address.phone_number %></td>
+        <td><%= user_address.fixed_telephone %></td>
+        <td><%= user_address.email %></td>
+        <td><%= user_address.delivery_time %></td>
+        <td>
+          <%= link_to "编辑", edit_user_address_path(user_address), :class => 'btn btn-default btn-xs' %>
+          <%#= link_to "删除", user_address_path(user_address), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%#= link_to "新建", new_user_address_path, :class => 'btn btn-primary' %>

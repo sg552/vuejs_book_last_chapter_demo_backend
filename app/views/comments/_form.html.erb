@@ -1,0 +1,36 @@
+<%= form_for @comment, :html => { :class => "form-horizontal comment" } do |f| %>
+
+  <div class="control-group">
+    <%= f.label "用户", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :member_user_id, options_from_collection_for_select(MemberUser.all, :id, :email, @comment.id), {:include_blank => "请选择用户"}, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "商品", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :good_id, options_from_collection_for_select(Good.all, :id, :name, @comment.good_id), {:include_blank => "请选择商品"}, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "用户昵称", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :nickname, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "评论内容", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :content, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <br/>
+
+  <%= f.submit "确定", :class => 'btn btn-primary' %>
+  <%= link_to "返回", comments_path, :class => 'btn btn-default' %>
+
+<% end %>

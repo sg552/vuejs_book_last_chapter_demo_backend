@@ -1,0 +1,16 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password:
+
+development:
+  <<: *default
+  database: si_lu_le_gou_web
+test:
+  <<: *default
+  database: si_lu_le_gou_web_test
+production:
+  <<: *default
+  database: si_lu_le_gou_web

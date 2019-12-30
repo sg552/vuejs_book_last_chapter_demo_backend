@@ -1,0 +1,93 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *= require jquery.datetimepicker
+ *= require_tree .
+ *= require_self
+ *= require bootstrap-select.min
+ */
+
+.locbar {
+    position: absolute;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 15px;
+    margin-top: 51px;
+    z-index: 1;
+}
+
+.table-actions-bottom .pager, .pagination, .summary { float: right; line-height: 30px; margin: 20px 10px; }
+
+.table-actions-bottom .pager { margin-top: 0; margin-bottom: 0; }
+
+.form-control {
+    width: 200px;
+}
+
+.form-action {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+/* line 136, ../../app/assets/stylesheets/basic.css.scss */
+dl.show_main dt {
+  width: 150px;
+  padding: 0 5px;
+  background: #DFF5FE;
+  height: 30px;
+  line-height: 30px;
+  float: left;
+  margin-top: 2px;
+  font-weight: normal;
+}
+
+/* line 26, ../../app/assets/stylesheets/bootstrap_and_overrides.css.scss */
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ddd;
+}
+/* line 32, ../../app/assets/stylesheets/bootstrap_and_overrides.css.scss */
+fieldset legend {
+  padding: 0 5px;
+  margin-left: 10px;
+  color: #0088cc;
+  font-size: 14px;
+  display: inline;
+  width: auto;
+  margin-bottom: 0;
+  line-height: 30px;
+  border-bottom: none;
+}
+
+
+
+.coupon_search_field {
+    float: left;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.group_search_field {
+    float: left;
+    margin-left: 20px;
+}
+
+.flash-message {
+    position: fixed;
+    right: 10px;
+    z-index: 2147483647;
+    width: 300px;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    -webkit-box-shadow: 1px 1px 1px #cccccc;
+    -moz-box-shadow:    1px 1px 1px #cccccc;
+    box-shadow:         1px 1px 1px #cccccc;
+}

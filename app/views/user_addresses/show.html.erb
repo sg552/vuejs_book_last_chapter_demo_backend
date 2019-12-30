@@ -1,0 +1,35 @@
+<%- model_class = UserAddress -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:member_user_id) %>:</strong></dt>
+  <dd><%= @user_address.member_user_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @user_address.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:post_code) %>:</strong></dt>
+  <dd><%= @user_address.post_code %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:region) %>:</strong></dt>
+  <dd><%= @user_address.region %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:detail_address) %>:</strong></dt>
+  <dd><%= @user_address.detail_address %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:phone_number) %>:</strong></dt>
+  <dd><%= @user_address.phone_number %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:fixed_telephone) %>:</strong></dt>
+  <dd><%= @user_address.fixed_telephone %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @user_address.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:delivery_time) %>:</strong></dt>
+  <dd><%= @user_address.delivery_time %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              user_addresses_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_user_address_path(@user_address), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              user_address_path(@user_address),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

@@ -1,0 +1,5 @@
+<%= javascript_tag do %>
+  <%- flash.each do |level, message| %>
+  flash('<%= j(message) %>', '<%= level %>');
+  <%- end %>
+<% end %>

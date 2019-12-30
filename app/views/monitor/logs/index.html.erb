@@ -1,0 +1,30 @@
+<% provide(:xitongguanli_on, "active") %>
+<%= content_for :locbar do %>
+     系统管理
+    &raquo;
+    <%=link_to '后台日志',monitor_logs_path %>
+<% end %>
+
+<h3>操作日志</h3>
+<%= paginate @logs %>
+<table class='table table-bordered' >
+  <tr>
+    <th>controller</th>
+    <th>action</th>
+    <th>时间</th>
+    <th>用户名</th>
+    <th>详情</th>
+  </tr>
+  <% @logs.each do |log| %>
+  <tr>
+    <td><%= log.controller %></td>
+    <td><%= log.action %></td>
+    <td><%= log.created_at %></td>
+    <td><%= log.user_name %></td>
+    <td><%= log.parameters %></td>
+  </tr>
+  <% end %>
+
+</table>
+<%= paginate @logs %>
+

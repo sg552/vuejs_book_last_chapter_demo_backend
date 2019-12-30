@@ -1,0 +1,41 @@
+<%= content_for :locbar do %>
+  商品
+  &raquo;
+  商品一级分类管理
+<% end %>
+
+<div class="page-header">
+  <h1>商品一级分类列表</h1>
+</div>
+
+<br/>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>商品一级分类名称</th>
+      <th>商品一级分类图标</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @first_categories.each do |first_category| %>
+      <tr>
+        <td><%= first_category.name %></td>
+        <td><%= image_tag first_category.logo, style: "width: 100px;" %></td>
+        <td>
+          <%= link_to "查看", first_category_path(first_category), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "编辑", edit_first_category_path(first_category), :class => 'btn btn-primary btn-xs' %>
+          <%= link_to "删除", first_category_path(first_category), :method => :delete,
+                      :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="table-actions-bottom">
+  <%= pagination @first_categories %>
+</div>
+
+<%= link_to "新建", new_first_category_path, :class => 'btn btn-primary' %>

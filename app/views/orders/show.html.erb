@@ -1,0 +1,100 @@
+
+<%= content_for :locbar do %>
+  订单
+  &raquo;
+  订单详情
+<% end %>
+
+
+<p>
+  <strong>订单号:</strong>
+  <%= @order.order_id %>
+</p>
+
+
+<p>
+  <strong>购买物品:</strong>
+  <% @order.buy_goods.each do |buy_good| %>
+  <br/>
+  <%=  buy_good.good.name %>
+  ￥<%=  buy_good.good.price %> x <%= buy_good.quantity %>
+  <br/>
+  <%#=  image_tag buy_good.good.goods_photos.first.image_url%>
+  <%= image_tag buy_good.show_goods_first_image, style: "width: 200px;" %>
+  <% end %>
+</p>
+
+<% if @order.customer_id.present? %>
+  <p>
+  <strong>顾客姓名:</strong>
+  <%= @order.customer.try :name %>
+  </p>
+  <p>
+  <strong>收货人:</strong>
+  <%= @order.receiver_name %>
+  </p>
+
+  <p>
+  <strong>收货地址:</strong>
+  <%= @order.receiver_address %>
+  </p>
+
+  <p>
+  <strong>收货电话:</strong>
+  <%= @order.receiver_phone %>
+  </p>
+<% else %>
+  <p>
+  <strong>顾客姓名:</strong>
+  <td><%= @order.member_user.try :email %></td>
+  </p>
+
+  <p>
+  <strong>收货人:</strong>
+  <td><%= @order.user_address.try :name %></td>
+  </p>
+
+  <p>
+  <strong>收货电话:</strong>
+  <td><%= @order.user_address.try :phone_number %></td>
+  </p>
+
+  <p>
+  <strong>收货地址:</strong>
+  <td>
+    <%= @order.user_address.province.name %>-
+    <%= @order.user_address.city.name %>-
+    <%= @order.user_address.town.name %>-
+    <%= @order.user_address.try :detail_address %>
+  </td>
+  </p>
+
+<% end %>
+
+<p>
+  <strong>总金额:</strong>
+  <%= @order.total_cost %>
+</p>
+
+<p>
+  <strong>订单状态:</strong>
+  <%= @order.order_status_text %>
+</p>
+
+<p>
+  <strong>卖家留言:</strong>
+  <%= @order.guest_remarks %>
+</p>
+
+<p>
+  <strong>支付金额:</strong>
+  <%= @order.payed_price %>
+</p>
+
+<p>
+  <strong>支付时间:</strong>
+  <%= @order.payed_at %>
+</p>
+
+<%= link_to "编辑", edit_order_path(@order), :class => 'btn btn-primary' %>
+<%= link_to "返回", orders_path, :class => 'btn btn-default'  %>

@@ -1,0 +1,47 @@
+<% provide(:edit_users_on, "active") %>
+<%= content_for :locbar do %>
+  <%= link_to '个人设置',  edit_user_registration_path %>
+  &raquo;
+  编辑
+<% end %>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="control-group">
+    <%= f.label '邮箱', :class => 'control-label' %><br />
+    <div class="controls">
+      <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>当前邮箱等待验证: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label '密码', :class => 'control-label' %> <i>(置空可不改变)</i><br />
+    <div class="controls">
+      <%= f.password_field :password, autocomplete: "off", :class => 'form-control'  %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label '确认密码', :class => 'control-label' %><br />
+    <div class="controls">
+      <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control'  %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label '当前密码', :class => 'control-label' %> <i>(需要你当前密码确认你的改变)</i><br />
+    <div class="controls">
+      <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control'  %>
+    </div>
+  </div>
+
+  <br>
+
+  <div><%= f.submit "提交", class: 'btn btn-primary' %> <%= link_to "返回", :back, class: 'btn btn-default' %></div>
+<% end %>
+

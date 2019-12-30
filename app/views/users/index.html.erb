@@ -1,0 +1,35 @@
+<% provide(:manager, "active") %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>用户名</th>
+      <th>操作</th>
+    </tr>
+  <tbody>
+    <% if @users.present? %>
+      <% @users.each do |user|%>
+        <tr>
+          <td>
+            <%= user.email %>
+          </td>
+          <td>
+            <%= link_to '查看', "",:class => 'btn btn-default btn-xs' %>
+            <%= link_to '编辑', "",:class => 'btn btn-primary btn-xs' %>
+            <%#= link_to '删除', "", method: :delete, data: { confirm: '你确定么' },:class => 'btn btn-xs btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    <% else%>
+      <tr>
+        <td colspan="1">
+          未查询到数据
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="table-actions-bottom">
+  <%= pagination @users %>
+</div>
+

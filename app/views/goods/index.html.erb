@@ -1,0 +1,72 @@
+<%= content_for :locbar do %>
+  商品
+  &raquo;
+  商品管理
+<% end %>
+
+<div class="page-header">
+  <h1>商品列表</h1>
+</div>
+
+<%= form_for Good.new, :url => goods_path, :html => {:method=>'get', :class => "form-horizontal" } do |f| %>
+  <div class='form-inline'>
+    <%= f.label '商品名称:'%>
+    <%= f.text_field :name, name: 'name', :class => 'form-control', style: "width: 250px", placeholder: '请输入商品名称(支持模糊查询)', value: params[:name] %>
+    <%= f.submit "查询", :class => 'btn btn-primary'  %>
+  </div>
+
+<% end %>
+
+<br/>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>商品名称</th>
+      <th>所属二级分类</th>
+      <!--<th style="width: 400px;">商品描述</th>-->
+      <th>商品折后价</th>
+      <th>商品原价</th>
+      <th>库存(件)</th>
+      <th>图片</th>
+      <th>上架时间</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @goods.each do |good| %>
+      <tr>
+        <td><%= good.name %></td>
+        <!--<td><%= raw good.good_attribute %></td>-->
+        <td><%= good.category.name rescue '' %></td>
+        <td><%= good.price %>元</td>
+        <td><%= good.original_price %>元</td>
+        <td><%= good.inventory %></td>
+        <td><%= image_tag (good.goods_photos.first.try :image_url), style: "width: 100px;" %></td>
+        <td><%= good.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td>
+          <%= link_to "查看", good_path(good), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "编辑", edit_good_path(good), :class => 'btn btn-primary btn-xs' %>
+          <%= link_to "删除", good_path(good), :method => :delete,
+                      :data => { :confirm => '确定删除该商品吗?' }, :class => 'btn btn-xs btn-danger' %>
+          <% if good.is_display %>
+            <%= link_to "下架", set_display_goods_path(:id => good.id), method: "post", :class => 'btn btn-danger btn-xs' %>
+          <% else %>
+            <%= link_to "上架", set_display_goods_path(:id => good.id), method: "post", :class => 'btn btn-success btn-xs' %>
+          <% end %>
+          <% if good.is_hot %>
+            <%= link_to "取消推荐", set_hot_goods_path(:id => good.id), method: "post", :class => 'btn btn-danger btn-xs' %>
+          <% else %>
+            <%= link_to "推荐商品", set_hot_goods_path(:id => good.id), method: "post", :class => 'btn btn-success btn-xs' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="table-actions-bottom">
+  <%= pagination @goods %>
+</div>
+
+<%= link_to "新建", new_good_path, :class => 'btn btn-primary' %>

@@ -1,0 +1,82 @@
+<%= form_for @good, :html => { :class => "form-horizontal good" } do |f| %>
+
+  <div class="control-group">
+    <%= f.label "商品名称", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "广告标语", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :advertisement, :class => 'form-control', style: "width: 600px;" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "商品属性", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.cktext_area :good_attribute, style: "" %>
+    </div>
+  </div>
+
+  <br/>
+
+  <div class="control-group">
+    <%= f.label "商品详情描述", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.cktext_area :description,style: "width: 400px; height: 200px;" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "商品库存", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :inventory, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "商品折后价", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :price, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "商品原价", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :original_price, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "图片", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :image_url, :class => 'form-control', :multiple => true, name: "photos[image_url][]" %>
+
+      <% if @good.goods_photos.present? %>
+        <% @good.goods_photos.each  do |photo| %>
+          <%= image_tag photo.image_url, style: "width: 100px;" %>
+        <% end %>
+      <% else %>
+        暂无图片
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "商品分类", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name, @good.category_id), {:include_blank => "请选择分类"}, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <br/>
+
+  <%= f.submit "确定", :class => 'btn btn-primary' %>
+  <%= link_to "返回", goods_path, :class => 'btn btn-default'  %>
+
+<% end %>

@@ -1,0 +1,53 @@
+<%= content_for :locbar do %>
+  操作
+  &raquo;
+  h5顾客管理
+<% end %>
+
+<div class="page-header">
+  <h1>h5顾客列表</h1>
+</div>
+
+<%= form_for Customer.new, :url => customers_path, :html => {:method=>'get', :class => "form-horizontal" } do |f| %>
+  <div class='form-inline'>
+    <%= f.label '顾客姓名:'%>
+    <%= f.text_field :name, name: 'name', :class => 'form-control', style: "width: 250px", placeholder: '请输入商品名称(支持模糊查询)', value: params[:name] %>
+    <%= f.submit "查询", :class => 'btn btn-primary'  %>
+  </div>
+<% end %>
+
+<br/>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>顾客姓名</th>
+      <th>图片</th>
+      <th>open_id</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.name %></td>
+        <td><%= image_tag (customer.avatar), style: "width: 100px;" %></td>
+        <td><%= customer.open_id %></td>
+        <td>
+          <%#= link_to "查看", customer_path(customer), :class => 'btn btn-default btn-xs' %>
+          <%#= link_to "编辑", edit_customer_path(customer), :class => 'btn btn-primary btn-xs' %>
+          <%= link_to "删除", customer_path(customer), :method => :delete,
+                      :data => { :confirm => '确定删除吗?' }, :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="table-actions-bottom">
+  <%= pagination @customers %>
+</div>
+
+<%= link_to "新建", new_customer_path, :class => 'btn btn-primary' %>
+
+

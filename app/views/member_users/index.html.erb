@@ -1,0 +1,49 @@
+<%= content_for :locbar do %>
+  操作
+  &raquo;
+  pc顾客管理
+<% end %>
+
+<div class="page-header">
+  <h1>pc顾客列表</h1>
+</div>
+
+<%= form_for Customer.new, :url => member_users_path, :html => {:method=>'get', :class => "form-horizontal" } do |f| %>
+  <div class='form-inline'>
+    <%= f.label '顾客邮箱:'%>
+    <%= f.text_field :name, name: 'name', :class => 'form-control', style: "width: 250px", placeholder: '请输入邮箱(支持模糊查询)', value: params[:name] %>
+    <%= f.submit "查询", :class => 'btn btn-primary'  %>
+  </div>
+<% end %>
+
+<br/>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>邮箱</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @member_users.each do |member_user| %>
+      <tr>
+        <td><%= member_user.email %></td>
+        <td>
+          <%#= link_to "查看", member_user_path(member_user), :class => 'btn btn-default btn-xs' %>
+          <%#= link_to "编辑", edit_member_user_path(member_user), :class => 'btn btn-primary btn-xs' %>
+          <%= link_to "删除", member_user_path(member_user), :method => :delete,
+                      :data => { :confirm => '确定删除吗?' }, :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="table-actions-bottom">
+  <%= pagination @member_users %>
+</div>
+
+<%#= link_to "新建", new_member_user_path, :class => 'btn btn-primary' %>
+
+

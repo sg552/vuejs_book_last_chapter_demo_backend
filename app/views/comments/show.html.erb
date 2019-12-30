@@ -1,0 +1,17 @@
+<div class="page-header">
+  <h1>评论详情</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>用户邮箱:</strong></dt>
+  <dd><%= @comment.member_user.email %></dd>
+  <dt><strong>商品名称:</strong></dt>
+  <dd><%= @comment.good.name %></dd>
+  <dt><strong>昵称:</strong></dt>
+  <dd><%= @comment.nickname %></dd>
+  <dt><strong>评论内容</dt>
+  <dd><%= @comment.content %></dd>
+</dl>
+
+<%= link_to "编辑", edit_comment_path(@comment), :class => 'btn btn-primary' %>
+<%= link_to "返回", comments_path, :class => 'btn btn-default'  %>

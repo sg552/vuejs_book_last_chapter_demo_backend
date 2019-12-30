@@ -1,0 +1,86 @@
+<%= content_for :locbar do %>
+  订单
+  &raquo;
+  订单管理
+<% end %>
+
+<div class="page-header">
+  <h1>订单列表</h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>订单号</th>
+      <th>顾客昵称</th>
+      <th>收货人</th>
+      <th>收货电话</th>
+      <th>收货地址</th>
+      <!--<th>商品名称</th>-->
+      <th>卖家留言</th>
+      <th>总价</th>
+      <th>下单时间</th>
+      <th>订单状态</th>
+      <th style="width: 110px;">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.order_id %></td>
+        <% if order.customer_id.present? %>
+          <td><%= order.customer.try :name %></td>
+          <td><%= order.receiver_name%></td>
+          <td><%= order.receiver_phone %></td>
+          <td><%= order.receiver_address %></td>
+        <% else %>
+          <td><%= order.member_user.try :email %></td>
+          <td><%= order.user_address.try :name %></td>
+          <td><%= order.user_address.try :phone_number %></td>
+          <td>
+            <%= order.user_address.province.name %>-
+            <%= order.user_address.city.name %>-
+            <%= order.user_address.town.name %>-
+            <%= order.user_address.try :detail_address %>
+          </td>
+        <% end %>
+        <!--
+        <td>
+          <% order.buy_goods.each do |buy_good| %>
+            <%= buy_good.good.name rescue '' %>
+          <% end %>
+        </td>
+        -->
+        <td><%= order.guest_remarks %></td>
+        <td><%= order.total_cost %></td>
+        <td><%= order.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <% if order.order_status == true %>
+          <td style="color: #62d562;"><%= order.order_status_text %></td>
+        <% else %>
+          <td style="color: red;"><%= order.order_status_text %></td>
+        <% end %>
+        <td>
+          <%= link_to "查看", order_path(order), :class => 'btn btn-default btn-xs' %>
+
+          <% if order.order_status == true %>
+            <% if order.is_dispatch.to_s == "false" %>
+              <%= link_to "发货", dispatch_goods_orders_path(:id => order.id), :method => :post, :class => 'btn btn-danger btn-xs' %>
+            <% else %>
+              <%= link_to "已发货", '', :class => 'btn btn-success btn-xs' %>
+            <% end %>
+          <% end %>
+          <%#= link_to "编辑", edit_order_path(order), :class => 'btn btn-primary btn-xs' %>
+          <%#= link_to "删除", order_path(order), :method => :delete,
+                      :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="table-actions-bottom">
+  <%= pagination @orders %>
+</div>
+
+<%#= link_to "新建", new_order_path, :class => 'btn btn-primary' %>
+
